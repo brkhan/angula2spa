@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Dish } from '../shared/dish';
+import {Params, ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
+import {DishService} from '../services/dish.service';
 
 // const DISH = {
 //   name: 'Uthappizza',
@@ -49,12 +52,18 @@ import { Dish } from '../shared/dish';
 })
 export class DishdetailComponent implements OnInit {
   
-  @Input()
+  //@Input()
   dish: Dish;
 
-  constructor() { }
+  constructor(private dishservice: DishService, private location: Location, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    let id = +this.route.snapshot.params['id'];
+    this.dish = this.dishservice.getDish(id);
+  }
+
+  goBack() : void {
+    this.location.back();
   }
 
 }
