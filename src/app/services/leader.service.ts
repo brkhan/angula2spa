@@ -13,8 +13,10 @@ export class LeaderService {
     return LEADERS;
   } 
 
-  getFeaturedLeader(): Leader {
-    return LEADERS[0];//filter(a => a.featured === true)[0];
+  getFeaturedLeader(): Promise<Leader> {
+    return new Promise(resolve => {
+      setTimeout(() => resolve(LEADERS[0]), 2000);
+    });
   }
 
 }
