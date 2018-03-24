@@ -3,6 +3,15 @@ import { Injectable } from '@angular/core';
 import { Promotion } from '../shared/promotion';
 import { PROMOTIONS } from '../shared/promotions';
 
+import 'rxjs/add/operator/toPromise';
+
+import 'rxjs/add/operator/delay';
+
+import 'rxjs/add/observable/of';
+
+import { Observable } from 'rxjs/Observable';
+
+
 @Injectable()
 export class PromotionService {
 
@@ -17,11 +26,10 @@ export class PromotionService {
   }
 
 
-  getFeaturedPromotion(): Promise<Promotion> {
+  getFeaturedPromotion(): Observable<Promotion> {
     var promotion = PROMOTIONS.filter(promotion => promotion.featured === true)[0];
 
-    return new Promise(resolve => {
-      setTimeout(() => resolve(promotion), 2000)});
+    return Observable.of(promotion).delay(2000);
   }
 
 }
