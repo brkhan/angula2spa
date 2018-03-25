@@ -59,6 +59,7 @@ export class DishdetailComponent implements OnInit {
   dishIds: number[];
   prev: number;
   next: number;
+  errMess : string;
 
   constructor(private dishservice: DishService,
      private location: Location,
